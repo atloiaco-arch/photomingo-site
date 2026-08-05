@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Photomingo — one gallery for all your photos</title>
+<meta name="description" content="Photomingo unifies your photos across Dropbox, OneDrive and your Android device into one gallery — find duplicates, clean them up, and see what isn't backed up. No servers, everything stays on your device.">
+<link rel="icon" type="image/png" href="assets/icon.png">
+<link rel="apple-touch-icon" href="assets/icon.png">
+<link rel="canonical" href="https://photomingo.app/">
+<meta property="og:title" content="Photomingo — one gallery for all your photos">
+<meta property="og:description" content="Unify Dropbox, OneDrive and your device into one photo gallery. Find duplicates, reclaim space, see what isn't backed up. 100% on-device.">
+<meta property="og:url" content="https://photomingo.app/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://photomingo.app/assets/og.png">
+<style>
+  :root {
+    --pink: #E8567B;
+    --pink-dark: #C93E62;
+    --cream: #FDF6EC;
+    --teal: #2EC4B6;
+    --teal-dark: #1E9C91;
+    --ink: #2B2230;
+    --ink-soft: #6B5E72;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
+    color: var(--ink);
+    background: var(--cream);
+    line-height: 1.6;
+  }
+  .hero {
+    background: linear-gradient(160deg, var(--pink) 0%, var(--pink-dark) 100%);
+    color: var(--cream);
+    padding: 4.5rem 1.5rem 5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero img.mascot {
+    width: 180px;
+    height: 180px;
+    margin-bottom: 0.5rem;
+    filter: drop-shadow(0 8px 24px rgba(0,0,0,0.18));
+  }
+  .hero h1 {
+    font-size: clamp(2.4rem, 6vw, 3.6rem);
+    letter-spacing: -0.02em;
+    font-weight: 700;
+  }
+  .hero p.tagline {
+    font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+    max-width: 34rem;
+    margin: 0.75rem auto 2rem;
+    opacity: 0.92;
+  }
+  .store-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    background: var(--ink);
+    color: #fff;
+    border-radius: 12px;
+    padding: 0.7rem 1.4rem;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .store-badge .play-icon { width: 26px; height: 26px; }
+  .store-badge .lines { text-align: left; line-height: 1.2; }
+  .store-badge .lines small { display: block; font-size: 0.7rem; opacity: 0.75; letter-spacing: 0.05em; text-transform: uppercase; }
+  .store-badge .lines strong { font-size: 1.15rem; font-weight: 600; }
+  a.store-badge:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,0.3); }
+  .store-badge.soon {
+    cursor: default;
+    background: rgba(43,34,48,0.55);
+  }
+  .store-badge.soon .lines small { opacity: 0.9; }
+  main { max-width: 62rem; margin: 0 auto; padding: 0 1.5rem; }
+  section.features { padding: 4rem 0 1rem; }
+  .features h2, .privacy-blurb h2 {
+    text-align: center;
+    font-size: 1.9rem;
+    margin-bottom: 2.5rem;
+    letter-spacing: -0.01em;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    gap: 1.5rem;
+  }
+  .card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 1.75rem 1.5rem;
+    box-shadow: 0 2px 10px rgba(43,34,48,0.07);
+  }
+  .card .glyph {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    background: var(--teal);
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1rem;
+  }
+  .card:nth-child(even) .glyph { background: var(--pink); }
+  .card .glyph svg { width: 24px; height: 24px; }
+  .card h3 { font-size: 1.15rem; margin-bottom: 0.4rem; }
+  .card p { color: var(--ink-soft); font-size: 0.95rem; }
+  section.privacy-blurb {
+    padding: 3.5rem 0 4rem;
+    text-align: center;
+  }
+  .privacy-blurb .panel {
+    background: #fff;
+    border: 2px solid var(--teal);
+    border-radius: 20px;
+    padding: 2.25rem 2rem;
+    max-width: 44rem;
+    margin: 0 auto;
+  }
+  .privacy-blurb h2 { margin-bottom: 1rem; }
+  .privacy-blurb p { color: var(--ink-soft); max-width: 38rem; margin: 0 auto; }
+  footer {
+    background: var(--ink);
+    color: rgba(253,246,236,0.75);
+    text-align: center;
+    padding: 2rem 1.5rem;
+    font-size: 0.9rem;
+  }
+  footer a { color: var(--teal); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <img class="mascot" src="assets/flamingo.png" alt="Photomingo flamingo mascot holding a camera" width="432" height="432">
+  <h1>Photomingo</h1>
+  <p class="tagline">One gallery for every photo you own — across Dropbox, OneDrive and your phone. Find the duplicates, reclaim the space, and know what's backed up.</p>
+
+  <!-- PLAY STORE LINK: once the app is live, replace this whole
+       <span class="store-badge soon">…</span> block with:
+       <a class="store-badge" href="https://play.google.com/store/apps/details?id=com.photohub.app">
+         (keep the inner SVG + .lines markup, change the small text to "Get it on")
+       </a> -->
+  <span class="store-badge soon" title="The Play Store listing isn't live yet">
+    <svg class="play-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M4 2.5v19c0 .4.45.65.8.42l1.1-.63L16.4 15.3 6 4.5 4.8 2.08A.48.48 0 0 0 4 2.5z" fill="#00DDFF"/>
+      <path d="M16.4 15.3 6.2 21.2l10.2-10.2 3.3 1.9c.9.5.9 1.8 0 2.3l-3.3 2.1z" fill="#FFCE00"/>
+      <path d="M6.2 2.7l10.2 8.3-2.3 2.3L4.9 2.2c.4-.2.9-.1 1.3.5z" fill="#00F076"/>
+      <path d="M16.4 11 6.2 2.7 16.4 8.7l3.3 1.9-3.3.4z" fill="#F63448"/>
+    </svg>
+    <span class="lines"><small>Coming soon on</small><strong>Google Play</strong></span>
+  </span>
+</header>
+
+<main>
+  <section class="features" id="features">
+    <h2>Your photos are scattered. Photomingo isn't.</h2>
+    <div class="grid">
+      <div class="card">
+        <div class="glyph"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 5h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2zm2 12 3.5-4.5 2.5 3 3.5-4.5L20 17H6z"/></svg></div>
+        <h3>One unified gallery</h3>
+        <p>Dropbox, OneDrive and your device's camera roll — photos and videos — in a single fast, date-sorted grid with full-screen viewing and pinch zoom.</p>
+      </div>
+      <div class="card">
+        <div class="glyph"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M11 3a8 8 0 1 0 4.9 14.3l4.4 4.4 1.4-1.4-4.4-4.4A8 8 0 0 0 11 3zm0 2a6 6 0 1 1 0 12 6 6 0 0 1 0-12zm-1 2v3H7v2h3v3h2v-3h3v-2h-3V7h-2z"/></svg></div>
+        <h3>Real duplicate detection</h3>
+        <p>Byte-level fingerprints plus perceptual matching recognize the same photo even when a cloud re-encoded it — copies collapse into one tile with badges per source.</p>
+      </div>
+      <div class="card">
+        <div class="glyph"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 3v1H4v2h16V4h-5V3H9zM5 8v11a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8H5zm3 2h2v9H8v-9zm6 0h2v9h-2v-9z"/></svg></div>
+        <h3>Bulk cleanup</h3>
+        <p>Review every duplicate group at once, keep the copies you want, and reclaim gigabytes — with safety rails that never let a photo's last copy be deleted.</p>
+      </div>
+      <div class="card">
+        <div class="glyph"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.4 10.04A7.5 7.5 0 0 0 4.9 8.5 6 6 0 0 0 6 20h13a4 4 0 0 0 .4-7.96zM12 11l4 4h-3v4h-2v-4H8l4-4z"/></svg></div>
+        <h3>Backup, verified</h3>
+        <p>See exactly which photos exist only on your phone — or are missing from a specific cloud — and upload them in bulk before it's too late.</p>
+      </div>
+      <div class="card">
+        <div class="glyph"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 4 6v6c0 5 3.4 9.3 8 10 4.6-.7 8-5 8-10V6l-8-4zm-1 13.6-3.5-3.5 1.4-1.4 2.1 2.1 4.6-4.6 1.4 1.4-6 6z"/></svg></div>
+        <h3>No account, no server</h3>
+        <p>Photomingo talks directly to your clouds from your phone. There's no Photomingo backend — your photos and sign-ins never pass through anyone else's servers.</p>
+      </div>
+      <div class="card">
+        <div class="glyph"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 5a7 7 0 0 0-7 7H2l3.9 3.9L10 12H7a5 5 0 1 1 1.5 3.6l-1.4 1.4A7 7 0 1 0 12 5z"/></svg></div>
+        <h3>Google Photos import</h3>
+        <p>Bring photos over from Google Photos with smart dedup — anything already on your device is recognized and skipped, not copied twice.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="privacy-blurb">
+    <div class="panel">
+      <h2>Private by architecture</h2>
+      <p>Photomingo is a backend-free app: indexing, matching and cleanup all happen on your device. Cloud access tokens are stored encrypted on your phone, and nothing about you or your library is collected, transmitted or sold. <a href="privacy.html" style="color:var(--teal-dark)">Read the privacy policy</a>.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>© 2026 Photomingo · <a href="privacy.html">Privacy policy</a></p>
+  <p style="margin-top:0.4rem">Android app · Dropbox and OneDrive are trademarks of their respective owners.</p>
+</footer>
+
+</body>
+</html>
