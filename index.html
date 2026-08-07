@@ -17,11 +17,13 @@
   :root {
     --pink: #E8567B;
     --pink-dark: #C93E62;
+    --pink-deep: #A82F50;
     --cream: #FDF6EC;
     --teal: #2EC4B6;
     --teal-dark: #1E9C91;
     --ink: #2B2230;
     --ink-soft: #6B5E72;
+    --lav: #CBB8F0;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
@@ -31,41 +33,37 @@
     background: var(--cream);
     line-height: 1.6;
   }
+
+  /* ---------- hero ---------- */
   .hero {
-    background: linear-gradient(160deg, var(--pink) 0%, var(--pink-dark) 100%);
+    background: linear-gradient(160deg, var(--pink) 0%, var(--pink-dark) 70%, var(--pink-deep) 100%);
     color: var(--cream);
-    padding: 4.5rem 1.5rem 5rem;
-    text-align: center;
+    padding: 4rem 1.5rem 0;
     position: relative;
     overflow: hidden;
   }
-  .hero img.mascot {
-    width: 180px;
-    height: 180px;
-    margin-bottom: 0.5rem;
-    filter: drop-shadow(0 8px 24px rgba(0,0,0,0.18));
+  .hero-inner {
+    max-width: 68rem; margin: 0 auto;
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+    gap: 2.5rem 4rem;
   }
+  .hero-copy { max-width: 30rem; text-align: left; padding-bottom: 4rem; }
+  .hero-copy .brand-row { display: flex; align-items: center; gap: 0.9rem; margin-bottom: 1.2rem; }
+  .hero-copy .brand-row img { width: 64px; height: 64px; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.2)); }
+  .hero-copy .brand-row span { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; }
   .hero h1 {
-    font-size: clamp(2.4rem, 6vw, 3.6rem);
-    letter-spacing: -0.02em;
-    font-weight: 700;
+    font-size: clamp(2.3rem, 5vw, 3.3rem);
+    letter-spacing: -0.02em; font-weight: 700; line-height: 1.12;
   }
   .hero p.tagline {
-    font-size: clamp(1.1rem, 2.5vw, 1.35rem);
-    max-width: 34rem;
-    margin: 0.75rem auto 2rem;
-    opacity: 0.92;
+    font-size: clamp(1.05rem, 2.2vw, 1.25rem);
+    margin: 1rem 0 2rem; opacity: 0.92;
   }
+  .badges { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
   .store-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.7rem;
-    background: var(--ink);
-    color: #fff;
-    border-radius: 12px;
-    padding: 0.7rem 1.4rem;
-    text-decoration: none;
-    font-size: 1rem;
+    display: inline-flex; align-items: center; gap: 0.7rem;
+    background: var(--ink); color: #fff; border-radius: 12px;
+    padding: 0.7rem 1.4rem; text-decoration: none; font-size: 1rem;
     transition: transform 0.15s ease, box-shadow 0.15s ease;
   }
   .store-badge .play-icon { width: 26px; height: 26px; }
@@ -73,79 +71,193 @@
   .store-badge .lines small { display: block; font-size: 0.7rem; opacity: 0.75; letter-spacing: 0.05em; text-transform: uppercase; }
   .store-badge .lines strong { font-size: 1.15rem; font-weight: 600; }
   a.store-badge:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,0.3); }
-  .store-badge.soon {
-    cursor: default;
-    background: rgba(43,34,48,0.55);
-  }
+  .store-badge.soon { cursor: default; background: rgba(43,34,48,0.55); }
   .store-badge.soon .lines small { opacity: 0.9; }
-  main { max-width: 62rem; margin: 0 auto; padding: 0 1.5rem; }
-  section.features { padding: 4rem 0 1rem; }
-  .features h2, .privacy-blurb h2 {
-    text-align: center;
-    font-size: 1.9rem;
-    margin-bottom: 2.5rem;
-    letter-spacing: -0.01em;
+  .pill {
+    display: inline-block; background: rgba(255,255,255,0.16);
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 999px; padding: 0.35rem 0.9rem; font-size: 0.85rem;
   }
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
-    gap: 1.5rem;
+
+  /* phone frame */
+  .phone {
+    width: 250px; flex-shrink: 0;
+    border-radius: 34px;
+    background: #14101a;
+    padding: 10px;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.35), 0 4px 14px rgba(0,0,0,0.25);
+    position: relative;
   }
-  .card {
-    background: #fff;
-    border-radius: 16px;
-    padding: 1.75rem 1.5rem;
-    box-shadow: 0 2px 10px rgba(43,34,48,0.07);
+  .phone::after {
+    content: ""; position: absolute; top: 20px; left: 50%; transform: translateX(-50%);
+    width: 10px; height: 10px; border-radius: 50%;
+    background: #000; box-shadow: 0 0 0 3px rgba(255,255,255,0.06);
   }
-  .card .glyph {
-    width: 44px; height: 44px;
-    border-radius: 12px;
-    background: var(--teal);
-    color: #fff;
-    display: flex; align-items: center; justify-content: center;
-    margin-bottom: 1rem;
-  }
-  .card:nth-child(even) .glyph { background: var(--pink); }
-  .card .glyph svg { width: 24px; height: 24px; }
-  .card h3 { font-size: 1.15rem; margin-bottom: 0.4rem; }
-  .card p { color: var(--ink-soft); font-size: 0.95rem; }
-  section.privacy-blurb {
-    padding: 3.5rem 0 4rem;
+  .phone img { width: 100%; display: block; border-radius: 26px; }
+  .hero .phone { margin-bottom: -70px; }
+
+  /* ---------- stats band ---------- */
+  .stats {
+    background: var(--ink); color: var(--cream);
+    padding: 6.5rem 1.5rem 2.5rem;
     text-align: center;
   }
-  .privacy-blurb .panel {
-    background: #fff;
-    border: 2px solid var(--teal);
-    border-radius: 20px;
-    padding: 2.25rem 2rem;
-    max-width: 44rem;
-    margin: 0 auto;
+  .stats-inner {
+    max-width: 62rem; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: 2rem;
   }
-  .privacy-blurb h2 { margin-bottom: 1rem; }
-  .privacy-blurb p { color: var(--ink-soft); max-width: 38rem; margin: 0 auto; }
+  .stat .num { font-size: 2.1rem; font-weight: 700; color: var(--teal); letter-spacing: -0.02em; }
+  .stat .num.pink { color: #F08CA6; }
+  .stat .lbl { font-size: 0.95rem; opacity: 0.8; }
+
+  /* ---------- alternating feature rows ---------- */
+  main { max-width: 66rem; margin: 0 auto; padding: 0 1.5rem; }
+  .feature-row {
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+    gap: 2.5rem 4.5rem; padding: 4.5rem 0;
+  }
+  .feature-row.flip { flex-direction: row-reverse; }
+  .feature-row .copy { max-width: 26rem; }
+  .kicker {
+    display: inline-block; font-size: 0.8rem; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--teal-dark); margin-bottom: 0.6rem;
+  }
+  .kicker.pink { color: var(--pink-dark); }
+  .feature-row h2 { font-size: 1.8rem; letter-spacing: -0.01em; line-height: 1.2; margin-bottom: 0.8rem; }
+  .feature-row p { color: var(--ink-soft); }
+  .feature-row ul { margin: 0.9rem 0 0 1.1rem; color: var(--ink-soft); }
+  .feature-row li { margin-bottom: 0.35rem; }
+  .divider { border: none; border-top: 1px solid rgba(43,34,48,0.1); }
+
+  /* ---------- privacy ---------- */
+  section.privacy {
+    background: linear-gradient(160deg, var(--teal) 0%, var(--teal-dark) 100%);
+    color: #fff; text-align: center;
+    padding: 4rem 1.5rem; margin-top: 2rem;
+  }
+  .privacy h2 { font-size: 1.9rem; margin-bottom: 0.8rem; letter-spacing: -0.01em; }
+  .privacy p { max-width: 38rem; margin: 0 auto; opacity: 0.94; }
+  .privacy p a { color: #fff; }
+  .privacy .chips { margin-top: 1.6rem; display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; }
+  .privacy .chip {
+    background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 999px; padding: 0.4rem 1.1rem; font-size: 0.9rem;
+  }
+
+  /* ---------- cta + footer ---------- */
+  section.cta { text-align: center; padding: 4.5rem 1.5rem; }
+  .cta img { width: 110px; margin-bottom: 1rem; }
+  .cta h2 { font-size: 2rem; margin-bottom: 0.5rem; letter-spacing: -0.01em; }
+  .cta p { color: var(--ink-soft); margin-bottom: 1.8rem; }
   footer {
-    background: var(--ink);
-    color: rgba(253,246,236,0.75);
-    text-align: center;
-    padding: 2rem 1.5rem;
-    font-size: 0.9rem;
+    background: var(--ink); color: rgba(253,246,236,0.75);
+    text-align: center; padding: 2rem 1.5rem; font-size: 0.85rem;
   }
-  footer a { color: var(--teal); text-decoration: none; }
+  footer a { color: var(--lav); text-decoration: none; }
   footer a:hover { text-decoration: underline; }
 </style>
 </head>
 <body>
 
 <header class="hero">
-  <img class="mascot" src="assets/flamingo.png" alt="Photomingo flamingo mascot holding a camera" width="432" height="432">
-  <h1>Photomingo</h1>
-  <p class="tagline">One gallery for every photo you own — across Dropbox, OneDrive and your phone. Find the duplicates, reclaim the space, and know what's backed up.</p>
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <div class="brand-row">
+        <img src="assets/flamingo.png" alt="Photomingo flamingo mascot holding a camera" width="432" height="432">
+        <span>Photomingo</span>
+      </div>
+      <h1>Every photo you own.<br>One gallery.</h1>
+      <p class="tagline">Dropbox, OneDrive, Google&nbsp;Photos and your Android device — unified, deduplicated, and backed up. All on your phone, never on our servers.</p>
+      <div class="badges">
+        <!-- PLAY STORE LINK: once the app is live, replace this whole
+             <span class="store-badge soon">…</span> block with:
+             <a class="store-badge" href="https://play.google.com/store/apps/details?id=com.photohub.app">
+               (keep the inner SVG + .lines markup, change the small text to "Get it on")
+             </a> -->
+        <span class="store-badge soon" title="The Play Store listing isn't live yet">
+          <svg class="play-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M4 2.5v19c0 .4.45.65.8.42l1.1-.63L16.4 15.3 6 4.5 4.8 2.08A.48.48 0 0 0 4 2.5z" fill="#00DDFF"/>
+            <path d="M16.4 15.3 6.2 21.2l10.2-10.2 3.3 1.9c.9.5.9 1.8 0 2.3l-3.3 2.1z" fill="#FFCE00"/>
+            <path d="M6.2 2.7l10.2 8.3-2.3 2.3L4.9 2.2c.4-.2.9-.1 1.3.5z" fill="#00F076"/>
+            <path d="M16.4 11 6.2 2.7 16.4 8.7l3.3 1.9-3.3.4z" fill="#F63448"/>
+          </svg>
+          <span class="lines"><small>Coming soon on</small><strong>Google Play</strong></span>
+        </span>
+        <span class="pill">Free · No ads · No account</span>
+      </div>
+    </div>
+    <div class="phone"><img src="assets/screen-gallery.jpg" alt="Photomingo gallery showing photos from every source in one timeline" width="480" height="1229"></div>
+  </div>
+</header>
 
-  <!-- PLAY STORE LINK: once the app is live, replace this whole
-       <span class="store-badge soon">…</span> block with:
-       <a class="store-badge" href="https://play.google.com/store/apps/details?id=com.photohub.app">
-         (keep the inner SVG + .lines markup, change the small text to "Get it on")
-       </a> -->
+<section class="stats">
+  <div class="stats-inner">
+    <div class="stat"><div class="num">4 sources</div><div class="lbl">Device · Dropbox · OneDrive · Google Photos</div></div>
+    <div class="stat"><div class="num pink">38.98 GB</div><div class="lbl">of duplicates found in one real library</div></div>
+    <div class="stat"><div class="num">0 servers</div><div class="lbl">everything is indexed on your phone</div></div>
+  </div>
+</section>
+
+<main>
+  <div class="feature-row">
+    <div class="copy">
+      <span class="kicker">See everything</span>
+      <h2>Badges show where every photo lives</h2>
+      <p>Each thumbnail carries tiny badges for the places it exists — this device, Dropbox, OneDrive, Google&nbsp;Photos. One glance tells you what's safe and what's stranded on a single copy, and a backup-status filter shows only the photos missing from a cloud.</p>
+    </div>
+    <div class="phone"><img src="assets/screen-backup.jpg" alt="Backup status filter — show photos missing from any cloud" width="480" height="1229" loading="lazy"></div>
+  </div>
+  <hr class="divider">
+  <div class="feature-row flip">
+    <div class="copy">
+      <span class="kicker pink">Clean up</span>
+      <h2>Reclaim gigabytes of duplicates</h2>
+      <p>Byte-level fingerprints plus perceptual matching recognize the same photo even when a cloud re-encoded it. Review every group and pick where each copy should live — keep the clouds, free the phone, or the other way around.</p>
+      <ul>
+        <li>One-tap presets: "keep on clouds", "keep on device"</li>
+        <li>A photo's last copy can never be deleted</li>
+        <li>Removed photos stay in the trash for ~30 days</li>
+      </ul>
+    </div>
+    <div class="phone"><img src="assets/screen-duplicates.jpg" alt="Duplicates review — 38.98 GB reclaimable" width="480" height="1230" loading="lazy"></div>
+  </div>
+  <hr class="divider">
+  <div class="feature-row">
+    <div class="copy">
+      <span class="kicker">Back up</span>
+      <h2>Fill the gaps in your backups</h2>
+      <p>Photomingo counts exactly how many photos are missing from each cloud and uploads them straight from the app — plus a one-time Google&nbsp;Photos import that brings your library down to your device, skipping anything you already have.</p>
+    </div>
+    <div class="phone"><img src="assets/screen-settings.jpg" alt="Backup and cleanup settings with per-cloud missing counts" width="480" height="1230" loading="lazy"></div>
+  </div>
+  <hr class="divider">
+  <div class="feature-row flip">
+    <div class="copy">
+      <span class="kicker pink">Stay in control</span>
+      <h2>Filter by source or folder</h2>
+      <p>Slice the gallery any way you like — only Dropbox, only your camera folder, or everything that isn't backed up anywhere yet.</p>
+    </div>
+    <div class="phone"><img src="assets/screen-filter.jpg" alt="Filter dialog — choose sources and folders" width="480" height="1230" loading="lazy"></div>
+  </div>
+</main>
+
+<section class="privacy">
+  <h2>Private by design</h2>
+  <p>Your photos and their index never leave your device. Photomingo talks directly to your own Dropbox, OneDrive and Google accounts — there is no Photomingo server, no analytics, and no account to create. Cloud access tokens are stored encrypted on your phone. <a href="privacy.html">Read the privacy policy</a>.</p>
+  <div class="chips">
+    <span class="chip">100% on-device</span>
+    <span class="chip">No ads</span>
+    <span class="chip">No tracking</span>
+    <span class="chip">Open OAuth — revoke anytime</span>
+  </div>
+</section>
+
+<section class="cta">
+  <img src="assets/flamingo.png" alt="" width="432" height="432">
+  <h2>One flock. All your photos.</h2>
+  <p>Coming soon to Google Play — free, no ads.</p>
+  <!-- PLAY STORE LINK: same swap as the hero badge above when the listing is live -->
   <span class="store-badge soon" title="The Play Store listing isn't live yet">
     <svg class="play-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
       <path d="M4 2.5v19c0 .4.45.65.8.42l1.1-.63L16.4 15.3 6 4.5 4.8 2.08A.48.48 0 0 0 4 2.5z" fill="#00DDFF"/>
@@ -155,56 +267,11 @@
     </svg>
     <span class="lines"><small>Coming soon on</small><strong>Google Play</strong></span>
   </span>
-</header>
-
-<main>
-  <section class="features" id="features">
-    <h2>Your photos are scattered. Photomingo isn't.</h2>
-    <div class="grid">
-      <div class="card">
-        <div class="glyph"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 5h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2zm2 12 3.5-4.5 2.5 3 3.5-4.5L20 17H6z"/></svg></div>
-        <h3>One unified gallery</h3>
-        <p>Dropbox, OneDrive and your device's camera roll — photos and videos — in a single fast, date-sorted grid with full-screen viewing and pinch zoom.</p>
-      </div>
-      <div class="card">
-        <div class="glyph"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M11 3a8 8 0 1 0 4.9 14.3l4.4 4.4 1.4-1.4-4.4-4.4A8 8 0 0 0 11 3zm0 2a6 6 0 1 1 0 12 6 6 0 0 1 0-12zm-1 2v3H7v2h3v3h2v-3h3v-2h-3V7h-2z"/></svg></div>
-        <h3>Real duplicate detection</h3>
-        <p>Byte-level fingerprints plus perceptual matching recognize the same photo even when a cloud re-encoded it — copies collapse into one tile with badges per source.</p>
-      </div>
-      <div class="card">
-        <div class="glyph"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 3v1H4v2h16V4h-5V3H9zM5 8v11a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8H5zm3 2h2v9H8v-9zm6 0h2v9h-2v-9z"/></svg></div>
-        <h3>Bulk cleanup</h3>
-        <p>Review every duplicate group at once, keep the copies you want, and reclaim gigabytes — with safety rails that never let a photo's last copy be deleted.</p>
-      </div>
-      <div class="card">
-        <div class="glyph"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.4 10.04A7.5 7.5 0 0 0 4.9 8.5 6 6 0 0 0 6 20h13a4 4 0 0 0 .4-7.96zM12 11l4 4h-3v4h-2v-4H8l4-4z"/></svg></div>
-        <h3>Backup, verified</h3>
-        <p>See exactly which photos exist only on your phone — or are missing from a specific cloud — and upload them in bulk before it's too late.</p>
-      </div>
-      <div class="card">
-        <div class="glyph"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 4 6v6c0 5 3.4 9.3 8 10 4.6-.7 8-5 8-10V6l-8-4zm-1 13.6-3.5-3.5 1.4-1.4 2.1 2.1 4.6-4.6 1.4 1.4-6 6z"/></svg></div>
-        <h3>No account, no server</h3>
-        <p>Photomingo talks directly to your clouds from your phone. There's no Photomingo backend — your photos and sign-ins never pass through anyone else's servers.</p>
-      </div>
-      <div class="card">
-        <div class="glyph"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 5a7 7 0 0 0-7 7H2l3.9 3.9L10 12H7a5 5 0 1 1 1.5 3.6l-1.4 1.4A7 7 0 1 0 12 5z"/></svg></div>
-        <h3>Google Photos import</h3>
-        <p>Bring photos over from Google Photos with smart dedup — anything already on your device is recognized and skipped, not copied twice.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="privacy-blurb">
-    <div class="panel">
-      <h2>Private by architecture</h2>
-      <p>Photomingo is a backend-free app: indexing, matching and cleanup all happen on your device. Cloud access tokens are stored encrypted on your phone, and nothing about you or your library is collected, transmitted or sold. <a href="privacy.html" style="color:var(--teal-dark)">Read the privacy policy</a>.</p>
-    </div>
-  </section>
-</main>
+</section>
 
 <footer>
   <p>© 2026 Photomingo · <a href="privacy.html">Privacy policy</a></p>
-  <p style="margin-top:0.4rem">Android app · Dropbox and OneDrive are trademarks of their respective owners.</p>
+  <p style="margin-top:0.4rem">Android app · Dropbox, OneDrive and Google Photos are trademarks of their respective owners.</p>
 </footer>
 
 </body>
