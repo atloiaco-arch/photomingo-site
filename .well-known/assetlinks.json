@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.photomingo.app",
+      "sha256_cert_fingerprints": [
+        "D1:3B:52:9F:26:39:6D:23:6A:5C:DC:58:02:C4:DB:74:02:00:C7:AC:EE:47:B7:F9:42:D4:CB:58:C8:64:E8:8A"
+      ]
+    }
+  }
+]
