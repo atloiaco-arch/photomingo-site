@@ -20,13 +20,14 @@
   ul { padding-left: 1.4rem; margin: 0.5rem 0; }
   li { margin: 0.35rem 0; }
   a { color: var(--teal-dark); }
+  code { font-size: 0.92em; background: rgba(43,34,48,0.06); padding: 0.05em 0.3em; border-radius: 3px; }
   .updated { font-size: 0.85rem; opacity: 0.8; margin-top: 0.4rem; }
 </style>
 </head>
 <body>
 <header>
   <h1>Photomingo Privacy Policy</h1>
-  <p class="updated">Last updated: September 2026</p>
+  <p class="updated">Last updated: 21 September 2026</p>
   <p><a href="index.html">← back to photomingo.app</a></p>
 </header>
 <main>
@@ -46,7 +47,20 @@
   <p>When you connect a cloud service, your use of that service is governed by its own privacy policy: <a href="https://www.dropbox.com/privacy">Dropbox</a>, <a href="https://privacy.microsoft.com/">Microsoft (OneDrive)</a>, <a href="https://www.pcloud.com/privacy_policy.html">pCloud</a>, <a href="https://policies.google.com/privacy">Google (Google Photos)</a>. If you connect a WebDAV server, your data is handled by whoever operates that server — for a self-hosted NAS or Nextcloud, that's you. Photomingo requests only the permissions needed to list, view, upload and delete the files you manage through it.</p>
 
   <h3>Google user data</h3>
-  <p>Google Photos import uses the Google Photos Picker API. Photomingo only receives the photos and videos you explicitly select in Google's picker, copies them to your device, and does not store, share or transfer them anywhere else. Photomingo's use and transfer to any other app of information received from Google APIs will adhere to the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including the Limited Use requirements. You can revoke Photomingo's access at any time from your <a href="https://myaccount.google.com/permissions">Google account permissions</a>.</p>
+  <p>Google Photos import uses the Google Photos Picker API. Photomingo only receives the photos and videos you explicitly select in Google's picker, copies them to your device, and does not store, share or transfer them anywhere else. It also receives the email address of the Google account you signed in with, which is shown in the app's settings so you can see which account is connected, and is stored only on your device. Photomingo never requests access to your full Google Photos library.</p>
+  <p>Photomingo's use and transfer to any other app of information received from Google APIs will adhere to the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including the Limited Use requirements. In particular, Google user data is used only to provide the import feature you requested; it is never sold, never used for advertising, never used to train machine-learning or AI models, and never read by a human. You can revoke Photomingo's access at any time from your <a href="https://myaccount.google.com/permissions">Google account permissions</a>.</p>
+
+  <h2>How we protect your data</h2>
+  <p>Photomingo handles sensitive data — your photos and the credentials that unlock your cloud accounts — so it is built to keep that data on your device and nowhere else. The specific safeguards are:</p>
+  <ul>
+    <li><strong>Encryption in transit</strong> — all communication with Google, Dropbox, Microsoft and pCloud uses HTTPS (TLS). Photos, tokens and metadata are never sent over an unencrypted connection to these services. For a WebDAV server you configure yourself, we recommend an <code>https://</code> address; if you enter an <code>http://</code> address, traffic to your own server is unencrypted by your choice.</li>
+    <li><strong>Encryption at rest</strong> — cloud sign-in tokens are stored with Android's EncryptedSharedPreferences, protected by a key that lives in the device's hardware-backed Android Keystore and never leaves it. The photo index and any photos you import are kept in the app's private storage, which Android sandboxes from other apps and covers with the device's file-based encryption.</li>
+    <li><strong>Access control</strong> — there is no Photomingo server, account system or administrator. Nobody at Photomingo, and no contractor or third party, can access your photos, credentials or index. The only copies exist on your device and in the cloud services you connected.</li>
+    <li><strong>Data minimisation</strong> — the app requests only the narrowest permissions each service offers for the job: for Google, the read-only Photos Picker scope plus your account email address; for other services, the folder-level access needed to list, view, upload and delete the files you manage through the app.</li>
+    <li><strong>Retention</strong> — a Google Photos Picker session is temporary: the app reads the items you selected, downloads them once, and the session is discarded. Sign-in tokens are kept only until you disconnect the service or uninstall the app. Imported photos stay in your device gallery until you delete them, like any other photo.</li>
+    <li><strong>Deletion and revocation</strong> — you can delete everything the app holds at any time (see <em>Data deletion</em> below) and revoke its access from the connected service's own account settings.</li>
+    <li><strong>Security incidents</strong> — because Photomingo stores no user data outside your device, a compromise of any Photomingo system cannot expose your data. If we become aware of a vulnerability in the app itself that could expose user data, we will ship a fix through Google Play as quickly as possible and publish a notice at photomingo.app and in the release notes.</li>
+  </ul>
 
   <h2>Permissions</h2>
   <ul>
